@@ -6,6 +6,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "@components": "/src/components",
+            "@stores": "/src/stores",
             "@styles": "/src/styles"
         }
     },
@@ -31,7 +32,7 @@ export default defineConfig({
     },
     build: {
         target: "es2022",
-        outDir: "../backend/public",
+        outDir: "./dist",
         rollupOptions: {
             output: {
                 manualChunks: (id: any) => {

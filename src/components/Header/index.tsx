@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./styles.module.scss";
+import styles from "./headerComponent.module.scss";
 
 import logo from "../../assets/logo.png";
 
@@ -9,7 +9,7 @@ export default function Header() {
             <Link to="/" className={styles.homeLink}>
                 <img className={styles.logo} src={logo} alt="Blacket Logo" />
 
-                <div>Admin</div>
+                <div>{import.meta.env.VITE_NAME} Admin</div>
             </Link>
             <div className={styles.rightSide}>
                 <Link to="/login" className={styles.button}>

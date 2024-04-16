@@ -10,6 +10,12 @@ declare module "@components/*" {
     export default content;
 }
 
+declare module "@stores/*" {
+    const content: ComponentType;
+
+    export default content;
+}
+
 declare module "@styles/*" {
     const content: { [className: string]: string };
 
