@@ -1,6 +1,5 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthRequired } from "./components/AuthRequired";
 import ErrorPage from "./components/ErrorPage";
 import routes from "./routes";
