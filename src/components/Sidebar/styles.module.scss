@@ -1,0 +1,14 @@
+.sidebar {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 220px;
+    height: calc(100% - 55px);
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    outline: none;
+    display: flex;
+    flex-direction: column;
+}

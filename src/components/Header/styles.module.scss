@@ -5,7 +5,7 @@
     width: 100%;
     height: 55px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    background-color: #fff;
+    background-color: var(--background-color);
     padding: 0 25px;
     display: flex;
     flex-direction: row;
@@ -14,28 +14,13 @@
     box-sizing: border-box;
 }
 
-.sidebar {
-    position: fixed;
-    top: 55px;
-    left: 0;
-    width: 220px;
-    height: calc(100% - 55px);
-    box-sizing: border-box;
-    padding: 20px;
-    background-color: #f7fafc;
-    border-right: 1px solid rgba(0, 0, 0, 0.15);
-    outline: none;
-    display: flex;
-    flex-direction: column;
-}
-
 .homeLink {
     text-decoration: none;
     height: 35px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: #3a3a3a;
+    color: var(--accent-color);
     font-size: 22px;
     font-weight: bold;
     user-select: none;
@@ -64,7 +49,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 10px;
-    color: #3a3a3a;
+    color: var(--accent-color);
     opacity: 0.6;
     transition: 200ms;
 
