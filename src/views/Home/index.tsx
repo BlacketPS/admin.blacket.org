@@ -9,8 +9,9 @@ export default function Home() {
             <div className="regularBody" style={{ overflow: "hidden" }}>
                 <div className="background" />
                 <div className="container">
-                    <div className={styles.loginHeader}>Login</div>
-                    <h1>testing shit</h1>
+                    <div className={styles.message}>
+                        Unauthorized
+                    </div>
                 </div>
             </div>
         </>
