@@ -1,9 +1,9 @@
-import Background from "./Background";
 import Header from "./Header";
+import RegularBody from "./RegularBody";
 import Sidebar from "./Sidebar";
 
 export {
-    Background,
     Header,
+    RegularBody,
     Sidebar
 };

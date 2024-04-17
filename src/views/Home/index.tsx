@@ -1,32 +1,18 @@
-import { Header, Background } from "@components/index";
-import styles from "./home.module.scss";
-
+import { Navigate } from "react-router-dom";
 import useUser from "@stores/UserStore/index";
+
+import styles from "./home.module.scss";
 
 export default function Home() {
     const { user } = useUser();
 
-    console.log(user);
+    if (user) return <Navigate to="/dashboard" />;
 
     return (
-        <>
-            <Header />
-
-            <div className="regularBody" style={{ overflow: "hidden" }}>
-                <Background />
-                <div className="container">
-                    <div className={styles.message}>
-                        {
-                            user ? (
-                                <>
-                                    <h1>Welcome back, {user.username}!</h1>
-                                    <p>It's good to see you again.</p>
-                                </>
-                            ) : <>You must be authorized to access this page.</>
-                        }
-                    </div>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.message}>
+                You must be authorized to access this page.
             </div>
-        </>
+        </div>
     );
 }

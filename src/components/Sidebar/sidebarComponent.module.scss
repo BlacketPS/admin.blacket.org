@@ -5,10 +5,61 @@
     width: 220px;
     height: calc(100% - 55px);
     box-sizing: border-box;
-    padding: 20px;
+    padding-top: 10px;
     background-color: var(--background-color);
     border-right: 1px solid rgba(0, 0, 0, 0.15);
     outline: none;
     display: flex;
     flex-direction: column;
+}
+
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    margin: 4px 0;
+    padding-left: 30px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: transparent;
+    color: var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: .1s linear;
+
+    &:hover {
+        color: var(--background-color);
+        background-color: var(--accent-color);
+    }
+
+    &[data-selected="true"] {
+        color: var(--background-color);
+        background-color: var(--accent-color);
+    }
+}
+
+.pageIcon {
+    font-size: 22px;
+    width: 26px;
+    text-align: center;
+}
+
+.pageText {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.insideContainer {
+    padding: 15px 20px 15px 250px;
+    width: 100%;
+    box-sizing: border-box;
 }

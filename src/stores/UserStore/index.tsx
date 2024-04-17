@@ -13,7 +13,7 @@ export default function useUser() {
 
 export function UserStoreProvider({ children }: { children: ReactElement }) {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("stewart");
 
     useEffect(() => {
         const fetchUser = async () => await window.fetch2.get("/api/users/me")
@@ -23,7 +23,7 @@ export function UserStoreProvider({ children }: { children: ReactElement }) {
         if (localStorage.getItem("token")) fetchUser()
             .finally(() => setLoading(false));
         else {
-            setUser(null);
+            setUser("fewfw");
             setLoading(false);
         }
     }, []);
