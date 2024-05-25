@@ -1,0 +1,45 @@
+.resourcesWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    @media (max-width: 650px) {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.resourceContainer {
+    width: fit-content;
+    padding: 7.5px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--background-color);
+    transition: .2s;
+
+    &:hover {
+        background-color: var(--accent-color);
+        color: var(--background-color);
+    }
+
+    &>img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        object-fit: contain;
+    }
+
+    &>i {
+        font-size: 18px;
+        margin-right: 10px;
+        user-select: none;
+    }
+
+    &>div {
+        font-size: 18px;
+    }
+}

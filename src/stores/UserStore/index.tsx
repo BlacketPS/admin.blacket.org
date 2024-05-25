@@ -1,29 +1,28 @@
-import { createContext, useContext, useEffect, useState, ReactElement } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-type UserStoreContextType = {
-    user: any,
-    setUser: React.Dispatch<any>
-};
+const UserStoreContext = createContext<{ user: any, setUser: any }>({ user: null, setUser: () => { } });
 
-const UserStoreContext = createContext<UserStoreContextType | undefined>(undefined);
-
-export default function useUser() {
+export function useUser() {
     return useContext(UserStoreContext);
 }
 
-export function UserStoreProvider({ children }: { children: ReactElement }) {
-    const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState("stewart");
+export function UserStoreProvider({ children }: { children: ReactNode }) {
+    const [loading, setLoading] = useState<boolean>(true);
+    const [user, setUser] = useState<any | null>(null);
 
     useEffect(() => {
         const fetchUser = async () => await window.fetch2.get("/api/users/me")
-            .then((res) => setUser(res.data.user))
-            .catch(() => localStorage.removeItem("token"));
+            .then((res: Fetch2Response) => setUser(res.data));
 
         if (localStorage.getItem("token")) fetchUser()
-            .finally(() => setLoading(false));
+            .then(() => setLoading(false))
+            .catch(() => {
+                setLoading(false);
+
+                localStorage.removeItem("token");
+            });
         else {
-            setUser("fewfw");
+            setUser(null);
             setLoading(false);
         }
     }, []);

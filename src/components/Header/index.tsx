@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useUser from "@stores/UserStore";
+import { useUser } from "@stores/UserStore/index";
 import styles from "./headerComponent.module.scss";
 
 import logo from "@assets/logo.png";
@@ -16,9 +16,13 @@ export default function Header() {
             </Link>
 
             {user && <div className={styles.rightSide}>
-                <Link to="/logout" className={styles.button}>
+                <div className={styles.button} onClick={() => {
+                    localStorage.removeItem("token");
+
+                    window.location.href = "/";
+                }}>
                     <i className="fas fa-sign-out-alt" />
-                </Link>
+                </div>
             </div>}
         </div>
     );

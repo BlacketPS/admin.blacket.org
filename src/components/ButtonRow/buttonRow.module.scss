@@ -1,0 +1,10 @@
+.buttonRow {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin: 0 -10px;
+
+    @media (max-width: 650px) {
+        justify-content: center;
+    }
+}

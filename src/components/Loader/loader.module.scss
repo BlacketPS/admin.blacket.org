@@ -1,0 +1,28 @@
+.loaderContainer {
+    @media (max-width: 650px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.loader {
+    position: relative;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    border-top: 5px solid #ffffff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: loading 1s linear infinite;
+
+    @keyframes loading {
+        0% {
+            transform: rotate(0)
+        }
+
+        to {
+            transform: rotate(360deg)
+        }
+    }
+}

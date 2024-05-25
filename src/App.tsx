@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate, RouterProvider, Outlet } from "react-router-dom";
 import StoreWrapper from "./stores";
 
-import { Home } from "./views";
+import { Home, Dashboard, Resources, Packs, Cosmetics } from "./views";
 
-import { Header, RegularBody, Sidebar } from "./components";
+import { Header, InsideContainer, RegularBody, Sidebar } from "./components";
 
 import "./all.scss";
 
@@ -16,13 +16,18 @@ const router = createBrowserRouter([{
         <RegularBody>
             <Sidebar />
 
-            <Outlet />
+            <InsideContainer>
+                <Outlet />
+            </InsideContainer>
         </RegularBody>
     </StoreWrapper>,
     children: [
         { id: "*", path: "*", element: <Navigate to="/" /> },
         { id: "home", path: "/", element: <Home /> },
-        { id: "dashboard", path: "/dashboard", element: <h1>Dashboard</h1> }
+        { id: "dashboard", path: "/dashboard", element: <Dashboard /> },
+        { id: "resources", path: "/resources", element: <Resources /> },
+        { id: "packs", path: "/packs", element: <Packs /> },
+        { id: "cosmetics", path: "/cosmetics", element: <Cosmetics /> }
     ]
 }]);
 

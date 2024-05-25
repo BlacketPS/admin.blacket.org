@@ -1,0 +1,110 @@
+.packsWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 210px);
+    grid-gap: 25px;
+    margin: 25px 0 35px 0;
+    width: 90%;
+
+    @media only screen and (max-width: 1010px) {
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 650px) {
+        width: 100%;
+    }
+}
+
+.addPackContainer {
+    width: 210px;
+    height: 210px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: var(--background-color);
+    color: var(--accent-color);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+
+    &:hover {
+        color: var(--background-color);
+        background: var(--accent-color);
+    }
+
+    &>i {
+        font-size: 150px;
+    }
+}
+
+.packContainer {
+    width: 210px;
+    height: 210px;
+    outline: none;
+    cursor: move;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+}
+
+.packImageContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &>img {
+        width: 65%;
+        object-fit: contain;
+        padding-bottom: 5px;
+        user-select: none;
+    }
+}
+
+.packBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    padding: 0 10px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 0 10px 0 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    &>img {
+        width: 16px;
+        height: 16px;
+        margin-right: 7px;
+    }
+}
+
+.packTop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    padding: 0 10px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 0 0 0 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &>img {
+        width: 16px;
+        height: 16px;
+        margin-left: 7px;
+    }
+}

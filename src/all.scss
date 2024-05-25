@@ -1,13 +1,47 @@
+* {
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @supports (-moz-appearance:none) {
+        scrollbar-color: #ffffff var(--primary-color);
+    }
+
+    @media (max-width: 650px) {
+        scrollbar-width: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 16px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--primary-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--background-color);
+        border: 2px solid var(--primary-color);
+    }
+}
+
 body {
     background-color: var(--body-background-color);
     color: var(--accent-color);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow: hidden;
     font-family: "Nunito", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
+}
+
+h1 {
+    @media (max-width: 650px) {
+        text-align: center;
+    }
 }
 
 .somethingWentWrong {
