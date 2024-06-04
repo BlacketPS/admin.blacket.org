@@ -14,39 +14,24 @@
     }
 }
 
-.addPackContainer {
-    width: 210px;
-    height: 210px;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    background: var(--background-color);
-    color: var(--accent-color);
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: .2s;
-
-    &:hover {
-        color: var(--background-color);
-        background: var(--accent-color);
-    }
-
-    &>i {
-        font-size: 150px;
-    }
-}
-
 .packContainer {
     width: 210px;
     height: 210px;
     outline: none;
-    cursor: move;
     position: relative;
     user-select: none;
+    border-radius: .5rem;
     overflow: hidden;
+    transition: filter .2s;
+
+    &[data-moveable="true"] {
+        cursor: move;
+    }
+
+    &[data-moveable="false"]:hover {
+        cursor: pointer;
+        filter: brightness(0.5);
+    }
 }
 
 .packImageContainer {

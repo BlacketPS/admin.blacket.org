@@ -1,5 +1,5 @@
-import Resource from "./Resource";
+import ResourceModal from "./ResourceModal";
 
 export {
-    Resource
+    ResourceModal
 };

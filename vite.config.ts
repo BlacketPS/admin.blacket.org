@@ -5,8 +5,8 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            "@assets": "/src/assets",
             "@components": "/src/components",
+            "@functions": "/src/functions",
             "@stores": "/src/stores",
             "@styles": "/src/styles"
         }
@@ -24,11 +24,6 @@ export default defineConfig({
             scopeBehaviour: "local",
             localsConvention: "camelCaseOnly",
             generateScopedName: "[name]__[local]___[hash:base64:5]"
-        },
-        preprocessorOptions: {
-            scss: {
-                additionalData: "@import \"./src/styles/variables.scss\";"
-            }
         }
     },
     build: {

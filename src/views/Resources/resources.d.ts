@@ -1,7 +1,8 @@
-import { HTMLAttributes } from "react";
+import { Resource, StaffAdminCreateResourceDto, StaffAdminUpdateResourceDto } from "blacket-types";
 
-import { Resource } from "blacket-types";
-
-export interface ResourceProps extends HTMLAttributes<HTMLDivElement> {
-    resource: Resource;
+export interface ResourceModalProps {
+    resource?: Resource;
+    onCreate?: (dto: StaffAdminCreateResourceDto) => Promise;
+    onUpdate?: (id: number, dto: StaffAdminUpdateResourceDto) => Promise;
+    onDelete?: (id: number) => Promise;
 }

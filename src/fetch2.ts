@@ -23,7 +23,6 @@ const fetchInterceptor = (method: HTTPMethod) => (url: string, body: JSON) => ne
         } catch {
             var data = null;
         }
-
         if (!response.ok) reject({ ok: false, status: response.status, data });
         else resolve({ ok: true, status: response.status, data });
     })

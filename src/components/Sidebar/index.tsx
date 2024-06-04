@@ -17,7 +17,6 @@ const pages: SidebarPage[] = [
     { name: "Blooks", icon: "fas fa-suitcase", path: "/blooks" },
     { name: "Items", icon: "fas fa-gem", path: "/items" },
     { name: "Market", icon: "fas fa-store", path: "/market" },
-    { name: "Fonts", icon: "fas fa-font-case", path: "/fonts" },
     { name: "Cosmetics", icon: "fas fa-paint-brush", path: "/cosmetics" }
 ];
 

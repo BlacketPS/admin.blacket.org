@@ -11,6 +11,7 @@
     appearance: none;
     background-color: transparent;
     border: 1px solid var(--accent-color);
+    border-radius: .25rem;
     margin-right: 5px;
     cursor: pointer;
     display: flex;
@@ -36,10 +37,10 @@
     &[data-checked="true"] {
         background-color: var(--accent-color);
         border: 1px solid var(--accent-color);
-        animation: pulsate .5s;
+        animation: pulsate .2s;
 
         &>i {
-            animation: maxWIn .8s;
+            animation: maxWIn .5s;
             animation-fill-mode: forwards;
 
             @keyframes maxWIn {

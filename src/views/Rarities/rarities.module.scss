@@ -1,0 +1,43 @@
+.raritiesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 90%;
+    padding-top: 30px;
+
+    @media only screen and (max-width: 1010px) {
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 650px) {
+        width: 100%;
+    }
+}
+
+.rarityContainer {
+    width: 100px;
+    height: 100px;
+    outline: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: .2s;
+
+    &:hover {
+        background-color: var(--accent-color) !important;
+    }
+
+    &>i {
+        font-size: 2.5rem;
+    }
+
+    &>p {
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+    }
+}

@@ -2,17 +2,15 @@ import { Link } from "react-router-dom";
 import { useUser } from "@stores/UserStore/index";
 import styles from "./headerComponent.module.scss";
 
-import logo from "@assets/logo.png";
-
 export default function Header() {
     const { user } = useUser();
 
     return (
         <div className={styles.navHeader}>
             <Link to={user ? "/dashboard" : "/"} className={styles.homeLink}>
-                <img className={styles.logo} src={logo} alt="Blacket Logo" />
+                <img className={styles.logo} src="https://cdn.blacket.org/static/content/logo.png" alt="Blacket Logo" />
 
-                <div>{import.meta.env.VITE_NAME} Admin</div>
+                <div><span className={styles.title}>{import.meta.env.VITE_NAME}</span> <div className={styles.pipe} /> Admin</div>
             </Link>
 
             {user && <div className={styles.rightSide}>

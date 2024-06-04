@@ -2,9 +2,11 @@
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    margin: 0 -10px;
+    gap: 10px;
+    margin: 0;
 
     @media (max-width: 650px) {
         justify-content: center;
+        flex-direction: column;
     }
 }

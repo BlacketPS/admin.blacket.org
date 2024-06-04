@@ -1,0 +1,17 @@
+.resourceGroupWrapper {
+    background-color: var(--background-color);
+    padding: 20px;
+    box-sizing: border-box;
+    width: calc(100% - 30px);
+}
+
+.resourceGroupWrapper .divider {
+    background-color: var(--accent-color);
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+}
+
+.resourceGroupWrapper .resourceGroupContent {
+    padding: 20px;
+}

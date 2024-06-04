@@ -23,8 +23,8 @@
     align-items: center;
     color: var(--accent-color);
     font-size: 22px;
-    font-weight: bold;
     user-select: none;
+    font-weight: 700;
 }
 
 .logo {
@@ -57,4 +57,20 @@
     &:hover {
         opacity: .9;
     }
+}
+
+.pipe {
+    margin: 0 5px;
+    background-color: var(--accent-color);
+    display: inline-block;
+    height: 25px;
+    width: 3px;
+    vertical-align: middle;
+    border-radius: 2px;
+    transform: translateY(-2.5px);
+}
+
+.title {
+    font-family: "Titan One", sans-serif;
+    font-weight: 400;
 }

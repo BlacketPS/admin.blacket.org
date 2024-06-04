@@ -1,4 +1,4 @@
-import CreatePackModal from "./CreatePackModal";
+import CreatePackModal from "./PackModal";
 import Pack from "./Pack";
 
 export {

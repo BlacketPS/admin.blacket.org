@@ -1,40 +1,71 @@
-import { useEffect, useState } from "react";
-
-import { Loader } from "@components/index";
-import { Resource } from "./components/index";
+import { ButtonRow, Button, Resource } from "@components/index";
+import { ResourceModal } from "./components/index";
+import { useModal } from "@stores/ModalStore/index";
+import { useResource } from "@stores/ResourceStore/index";
 import styles from "./resources.module.scss";
 
-import { Resource as ResourceType } from "blacket-types";
+import { StaffAdminCreateResourceDto, StaffAdminUpdateResourceDto, Resource as ResourceType } from "blacket-types";
 
 export default function Resources() {
-    const [loading, setLoading] = useState<boolean>(true);
-    const [resources, setResources] = useState<ResourceType[]>([]);
+    const { createModal } = useModal();
+    const { resources, setResources } = useResource();
 
-    useEffect(() => {
-        window.fetch2.get("/api/staff/resources")
+    const createResource = (dto: StaffAdminCreateResourceDto) => new Promise((resolve, reject) => {
+        window.fetch2.post("/api/staff/admin/resources", dto)
             .then((res: Fetch2Response) => {
-                setResources(res.data);
+                setResources([...resources, res.data]);
 
-                setLoading(false);
-            });
-    }, []);
+                resolve(res);
+            })
+            .catch(reject);
+    });
+
+    const updateResource = (id: number, dto: StaffAdminUpdateResourceDto) => new Promise((resolve, reject) => {
+        window.fetch2.put(`/api/staff/admin/resources/${id}`, dto)
+            .then((res: Fetch2Response) => {
+                const resource = { ...resources.find((resource) => resource.id === id), ...dto };
+
+                const newResources = resources.map((r) => r.id === id ? resource : r) as ResourceType[];
+
+                setResources(newResources);
+                resolve(res);
+            })
+            .catch(reject);
+    });
+
+    const deleteResource = (id: number) => new Promise((resolve, reject) => {
+        window.fetch2.delete(`/api/staff/admin/resources/${id}`, {})
+            .then((res: Fetch2Response) => {
+                setResources(resources.filter((resource) => resource.id !== id));
+
+                resolve(res);
+            })
+            .catch(reject);
+    });
 
     return (
         <>
             <h1>Resource Manager</h1>
 
-            {!loading ? <>
-                <div className={styles.resourcesWrapper}>
-                    <div className={styles.resourceContainer}>
-                        <i className="fas fa-plus" />
-                        <div>Add Resource</div>
-                    </div>
+            <div className={styles.resourcesWrapper}>
+                <ButtonRow>
+                    <Button
+                        icon="fas fa-plus"
+                        onClick={() => createModal(<ResourceModal onCreate={createResource} />)}>
+                        Create Resource
+                    </Button>
+                </ButtonRow>
 
-                    {resources.map((resource: ResourceType) => (
-                        <Resource key={resource.id} resource={resource} />
+                <div className={styles.resourcesContainer}>
+                    {resources.map((resource) => (
+                        <Resource
+                            key={resource.id}
+                            resource={resource}
+                            onClick={() => createModal(<ResourceModal resource={resource} onUpdate={updateResource} onDelete={deleteResource} />)}
+                        />
                     ))}
                 </div>
-            </> : <Loader />}
+            </div>
         </>
     );
 }

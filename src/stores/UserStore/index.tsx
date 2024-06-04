@@ -9,7 +9,6 @@ export function useUser() {
 export function UserStoreProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState<boolean>(true);
     const [user, setUser] = useState<any | null>(null);
-
     useEffect(() => {
         const fetchUser = async () => await window.fetch2.get("/api/users/me")
             .then((res: Fetch2Response) => setUser(res.data));
