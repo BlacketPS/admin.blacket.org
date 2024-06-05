@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { Modal, Form, Input, RarityPicker, ResourcePicker, ErrorContainer, Button } from "@components/index";
+import { Modal, Form, Input, RarityPicker, ResourcePicker, PackPicker, ErrorContainer, Button } from "@components/index";
 import { useModal } from "@stores/ModalStore/index";
 import { useResource } from "@stores/ResourceStore/index";
 import { useRarity } from "@stores/RarityStore/index";
+import { usePack } from "@stores/PackStore/index";
 
 import { BlookModalProps } from "../blooks.d";
-import { Rarity, Resource } from "blacket-types";
+import { Rarity, Resource, Pack } from "blacket-types";
 
 export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: BlookModalProps) {
     const { resources } = useResource();
     const { rarities } = useRarity();
+    const { packs } = usePack();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
@@ -19,7 +21,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
     const [rarity, setRarity] = useState<Rarity | null>(null);
     const [imageResource, setImageResource] = useState<Resource | null>(null);
     const [backgroundResource, setBackgroundResource] = useState<Resource | null>(null);
-    const [pack, setPack] = useState<any>(null);
+    const [pack, setPack] = useState<Pack | null>(null);
 
     const { closeModal } = useModal();
 
@@ -28,8 +30,9 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
             setImageResource(resources.find((resource) => resource.id === blook.imageId) || null);
             setBackgroundResource(resources.find((resource) => resource.id === blook.backgroundId) || null);
             setRarity(rarities.find((rarity) => rarity.id === blook.rarityId) || null);
+            setPack(packs.find((pack) => pack.id === blook.packId) || null);
         }
-    }, [blook, resources, rarities]);
+    }, [blook, resources, rarities, packs]);
 
     const submitForm = (mode: "create" | "update" | "delete") => {
         switch (mode) {
@@ -43,7 +46,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id })
+                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -58,7 +61,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id })
+                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -111,7 +114,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 />
 
                 <RarityPicker onPick={(rarity) => setRarity(rarity)}>
-                    Rarity: {rarity ? <span style={{ color: rarity.color, marginLeft: 5 }}>{rarity.name}</span> : "None"}
+                    Rarity: {rarity ? <>[{rarity.id}] <span style={{ color: rarity.color, marginLeft: 5 }}>{rarity.name}</span></> : "None"}
                 </RarityPicker>
 
                 <ResourcePicker
@@ -127,6 +130,10 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 >
                     Background Resource: {backgroundResource ? <>[{backgroundResource.id}] <img src={backgroundResource.path} /></> : "None"}
                 </ResourcePicker>
+
+                <PackPicker onPick={(pack) => setPack(pack)}>
+                    Pack: {pack ? <>[{pack.id}] {pack.name}</> : "None"}
+                </PackPicker>
 
                 {error !== "" && <ErrorContainer>{error}</ErrorContainer>}
 

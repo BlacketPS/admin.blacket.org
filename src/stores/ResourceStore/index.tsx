@@ -5,10 +5,12 @@ import { Resource } from "blacket-types";
 
 const ResourceStoreContext = createContext<{
     resources: Resource[],
-    setResources: (resources: Resource[]) => void
+    setResources: (resources: Resource[]) => void,
+    resourceIdToPath?: (id: number) => string
 }>({
     resources: [],
-    setResources: () => null
+    setResources: () => null,
+    resourceIdToPath: () => ""
 });
 
 export function useResource() {
@@ -32,6 +34,14 @@ export function ResourceStoreProvider({ children }: { children: ReactNode }) {
         else setLoading(false);
     }, [user]);
 
+    const resourceIdToPath = (id: number): string => {
+        const resource = resources.find((resource) => resource.id === id);
+
+        if (!resource) return "";
+
+        return resource.path;
+    };
+
     if (error) throw new Error("An error occurred while fetching resources.");
-    else return <ResourceStoreContext.Provider value={{ resources, setResources }}>{!loading ? children : null}</ResourceStoreContext.Provider>;
+    else return <ResourceStoreContext.Provider value={{ resources, setResources, resourceIdToPath }}>{!loading ? children : null}</ResourceStoreContext.Provider>;
 }

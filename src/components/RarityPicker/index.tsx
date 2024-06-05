@@ -62,7 +62,7 @@ export default function RarityPicker({ onPick, children }: RarityPickerProps) {
                                 setRaritySelectorOpen(false);
                             }}>
                                 <i className="fas fa-sparkle" />
-                                {rarity.name}
+                                [{rarity.id}] {rarity.name}
                             </div>
                         )) : <div className={styles.noRarities}>No rarities found.</div>}
                     </div>

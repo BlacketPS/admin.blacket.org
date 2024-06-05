@@ -8,6 +8,7 @@ import Input from "./Input";
 import InsideContainer from "./InsideContainer";
 import Loader from "./Loader";
 import * as Modal from "./Modals";
+import PackPicker from "./PackPicker";
 import RarityPicker from "./RarityPicker";
 import RegularBody from "./RegularBody";
 import Resource from "./Resource";
@@ -26,6 +27,7 @@ export {
     InsideContainer,
     Loader,
     Modal,
+    PackPicker,
     RarityPicker,
     RegularBody,
     Resource,

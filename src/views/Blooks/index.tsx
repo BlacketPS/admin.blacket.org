@@ -18,6 +18,7 @@ import { useBlook } from "@stores/BlookStore/index";
 import { ButtonRow, Button } from "@components/index";
 import { BlookModal, BlookPackCategory, BlookPackBlook } from "./components/index";
 import styles from "./blooks.module.scss";
+import { Blook, StaffAdminCreateBlookDto, StaffAdminUpdateBlookDto } from "blacket-types";
 
 export default function Blooks() {
     const [editMode, setEditMode] = useState<boolean>(true);
@@ -54,14 +55,38 @@ export default function Blooks() {
         }
     };
 
-    const createBlook = (blook: any) => {
-    };
+    const createBlook = (dto: StaffAdminCreateBlookDto) => new Promise((resolve, reject) => {
+        window.fetch2.post("/api/staff/admin/blooks", dto)
+            .then((res: Fetch2Response) => {
+                setBlooks([...blooks, res.data]);
 
-    const updateBlook = (id: number, blook: any) => {
-    };
+                resolve(res);
+            })
+            .catch(reject);
+    });
 
-    const deleteBlook = (id: number) => {
-    };
+    const updateBlook = (id: number, dto: StaffAdminUpdateBlookDto) => new Promise((resolve, reject) => {
+        window.fetch2.put(`/api/staff/admin/blooks/${id}`, dto)
+            .then((res: Fetch2Response) => {
+                const blook = { ...blooks.find((blook) => blook.id === id), ...dto };
+
+                const newBlooks = blooks.map((b) => b.id === id ? blook : b) as Blook[];
+
+                setBlooks(newBlooks);
+                resolve(res);
+            })
+            .catch(reject);
+    });
+
+    const deleteBlook = (id: number) => new Promise((resolve, reject) => {
+        window.fetch2.delete(`/api/staff/admin/blooks/${id}`, {})
+            .then((res: Fetch2Response) => {
+                setBlooks(blooks.filter((blook) => blook.id !== id));
+
+                resolve(res);
+            })
+            .catch(reject);
+    });
 
     return (
         <>
