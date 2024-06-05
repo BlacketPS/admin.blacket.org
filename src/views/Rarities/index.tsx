@@ -4,7 +4,7 @@ import { useRarity } from "@stores/RarityStore/index";
 import { RarityModal } from "./components/index";
 import styles from "./rarities.module.scss";
 
-import { StaffAdminCreateRarityDto, StaffAdminUpdateRarityDto } from "blacket-types";
+import { Rarity, StaffAdminCreateRarityDto, StaffAdminUpdateRarityDto } from "blacket-types";
 
 const hexToRgb = (hex: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -27,30 +27,6 @@ export default function Rarities() {
     const { createModal } = useModal();
     const { rarities, setRarities } = useRarity();
 
-    /* const addResource = (dto: StaffAdminCreateResourceDto) => new Promise((resolve, reject) => {
-        window.fetch2.post("/api/staff/admin/resources", dto)
-            .then((res: Fetch2Response) => {
-                setResources([...resources, res.data]);
-
-                resolve(res);
-            })
-            .catch(reject);
-    });
-
-    const placeholder = () => new Promise((resolve) => {
-        resolve("");
-    });
-
-    const deleteResource = (id: number) => new Promise((resolve, reject) => {
-        window.fetch2.delete(`/api/staff/admin/resources/${id}`, {})
-            .then((res: Fetch2Response) => {
-                setResources(resources.filter((resource) => resource.id !== id));
-
-                resolve(res);
-            })
-            .catch(reject);
-    }); */
-
     const createRarity = (dto: StaffAdminCreateRarityDto) => new Promise((resolve, reject) => {
         window.fetch2.post("/api/staff/admin/rarities", dto)
             .then((res: Fetch2Response) => {
@@ -66,7 +42,7 @@ export default function Rarities() {
             .then((res: Fetch2Response) => {
                 const rarity = { ...rarities.find((rarity) => rarity.id === id), ...dto };
 
-                const newRarities = rarities.map((r) => r.id === id ? rarity : r);
+                const newRarities = rarities.map((r) => r.id === id ? rarity : r) as Rarity[];
 
                 setRarities(newRarities);
 
