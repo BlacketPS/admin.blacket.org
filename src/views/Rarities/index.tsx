@@ -91,6 +91,7 @@ export default function Rarities() {
 
             <ButtonRow>
                 <Button
+                    icon="fas fa-plus"
                     onClick={() => createModal(<RarityModal onCreate={createRarity} />)}
                 >
                     Create Rarity
