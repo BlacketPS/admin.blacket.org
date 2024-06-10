@@ -37,7 +37,7 @@ export default function PackPicker({ onPick, children }: PackPickerProps) {
         <>
             <div className={styles.packPickerContainer}>
                 <div ref={packPickerButtonRef} className={styles.packPickerButton} onClick={() => setRaritySelectorOpen(!packSelectorOpen)}>
-                    {children ?? "Selected Rarity:"}
+                    {children ?? "Selected Pack:"}
                 </div>
             </div>
 
@@ -73,6 +73,7 @@ export default function PackPicker({ onPick, children }: PackPickerProps) {
 
                             setRaritySelectorOpen(false);
                         }}>
+                            <img src="https://cdn.blacket.org/static/content/packs/Miscellaneous.png" alt="None" />
                             None
                         </div>
                     </div>

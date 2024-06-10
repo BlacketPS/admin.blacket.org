@@ -46,7 +46,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id })
+                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -61,7 +61,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id })
+                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));

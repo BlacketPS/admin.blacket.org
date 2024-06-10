@@ -46,7 +46,7 @@ export default function Blooks() {
             const oldIndex = blooks.findIndex((blook) => blook.id === active.id);
             const newIndex = blooks.findIndex((blook) => blook.id === over.id);
 
-            const newBlooks = arrayMove(blooks.filter((blook) => blook.packId === blooks[oldIndex].packId), oldIndex, newIndex);
+            const newBlooks = arrayMove(blooks, oldIndex, newIndex);
             newBlooks.forEach((blook, index) => blook.priority = index);
 
             setBlooks(newBlooks);
@@ -115,6 +115,11 @@ export default function Blooks() {
                                 blook={blook}
                                 moveable={!editMode}
                                 onClick={() => createModal(<BlookModal blook={blook} onUpdate={updateBlook} onDelete={deleteBlook} />)}
+                                onContextMenu={(e) => {
+                                    e.preventDefault();
+
+                                    createModal(<BlookModal blook={blook} onCreate={createBlook} />);
+                                }}
                             />)}
                         </SortableContext>
                     </BlookPackCategory>)}
