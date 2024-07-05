@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider, Outlet } from "react-router-dom";
 import StoreWrapper from "./stores";
 
-import { Home, Dashboard, Resources, Rarities, Packs, Blooks, Cosmetics } from "./views";
+import { Home, Dashboard, Resources, Rarities, Packs, Blooks, Items } from "./views";
 
 import { Header, InsideContainer, RegularBody, Sidebar } from "./components";
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([{
         { id: "rarities", path: "/rarities", element: <Rarities /> },
         { id: "packs", path: "/packs", element: <Packs /> },
         { id: "blooks", path: "/blooks", element: <Blooks /> },
-        { id: "cosmetics", path: "/cosmetics", element: <Cosmetics /> }
+        { id: "items", path: "/items", element: <Items /> }
     ]
 }]);
 

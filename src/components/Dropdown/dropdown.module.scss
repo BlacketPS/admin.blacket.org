@@ -1,4 +1,4 @@
-.rarityPickerContainer {
+.dropdownContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
     font-size: 20px;
 }
 
-.rarityPickerButton {
+.dropdownButton {
     padding: 7.5px 15px;
     display: flex;
     flex-direction: row;
@@ -40,15 +40,16 @@
     }
 }
 
-.raritySelectorContainer {
+.dropdownMenuContainer {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    z-index: 1;
 }
 
-.raritySelector {
+.dropdownMenu {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,11 +63,11 @@
     }
 }
 
-.rarityContainer {
+.itemContainer {
     width: fit-content;
 }
 
-.rarityList {
+.itemList {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -78,7 +79,7 @@
     }
 }
 
-.rarityListRarity {
+.itemListItem {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -98,6 +99,6 @@
     }
 }
 
-.noRarities {
+.noItems {
     margin: 10px;
 }

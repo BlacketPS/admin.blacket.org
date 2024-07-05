@@ -28,7 +28,7 @@ export default function Home() {
                 You must be authorized to access this page.
 
                 <ButtonRow>
-                    <Button onClick={() => window.location.href = "https://rewrite.blacket.org/settings/admin-handover"}>Authorize</Button>
+                    <Button onClick={() => window.location.href = "https://dev.blacket.org/settings/admin-handover"}>Authorize</Button>
                 </ButtonRow>
             </div>
         </div>

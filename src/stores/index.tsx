@@ -6,6 +6,7 @@ import { RarityStoreProvider } from "./RarityStore";
 import { PackStoreProvider } from "./PackStore";
 import { BlookStoreProvider } from "./BlookStore";
 import { ModalStoreProvider } from "./ModalStore";
+import { ItemStoreProvider } from "./ItemStore";
 
 export default function StoreWrapper({ children }: { children: ReactNode }) {
     return (
@@ -14,9 +15,11 @@ export default function StoreWrapper({ children }: { children: ReactNode }) {
                 <RarityStoreProvider>
                     <PackStoreProvider>
                         <BlookStoreProvider>
-                            <ModalStoreProvider>
-                                {children}
-                            </ModalStoreProvider>
+                            <ItemStoreProvider>
+                                <ModalStoreProvider>
+                                    {children}
+                                </ModalStoreProvider>
+                            </ItemStoreProvider>
                         </BlookStoreProvider>
                     </PackStoreProvider>
                 </RarityStoreProvider>

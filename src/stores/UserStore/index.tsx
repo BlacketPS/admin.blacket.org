@@ -1,6 +1,14 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-const UserStoreContext = createContext<{ user: any, setUser: any }>({ user: null, setUser: () => { } });
+import { User } from "blacket-types";
+
+const UserStoreContext = createContext<{
+    user: User | null,
+    setUser: (user: User | null) => void
+}>({
+    user: null,
+    setUser: () => null
+});
 
 export function useUser() {
     return useContext(UserStoreContext);

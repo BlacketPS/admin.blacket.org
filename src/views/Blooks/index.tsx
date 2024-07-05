@@ -121,6 +121,7 @@ export default function Blooks() {
                                     createModal(<BlookModal blook={blook} onCreate={createBlook} />);
                                 }}
                             />)}
+                            {blooks.filter((blook) => blook.packId === pack.id).length === 0 && <div className={styles.noBlooks}>No blooks are in this pack.</div>}
                         </SortableContext>
                     </BlookPackCategory>)}
 
@@ -132,6 +133,7 @@ export default function Blooks() {
                                 moveable={!editMode}
                                 onClick={() => createModal(<BlookModal blook={blook} onUpdate={updateBlook} onDelete={deleteBlook} />)}
                             />)}
+                            {blooks.filter((blook) => !blook.packId && blook.name !== "Default").length === 0 && <div className={styles.noBlooks}>No blooks are in this pack.</div>}
                         </SortableContext>
                     </BlookPackCategory>
                 </div>

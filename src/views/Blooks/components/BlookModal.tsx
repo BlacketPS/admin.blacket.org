@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Modal, Form, Input, RarityPicker, ResourcePicker, PackPicker, ErrorContainer, Button } from "@components/index";
+import { Modal, Form, Input, RarityPicker, ResourcePicker, PackPicker, Dropdown, ErrorContainer, Button } from "@components/index";
 import { useModal } from "@stores/ModalStore/index";
 import { useResource } from "@stores/ResourceStore/index";
 import { useRarity } from "@stores/RarityStore/index";
 import { usePack } from "@stores/PackStore/index";
 
 import { BlookModalProps } from "../blooks.d";
-import { Rarity, Resource, Pack } from "blacket-types";
+import { Rarity, Resource, Pack, DayType } from "blacket-types";
 
 export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: BlookModalProps) {
     const { resources } = useResource();
@@ -22,6 +22,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
     const [imageResource, setImageResource] = useState<Resource | null>(null);
     const [backgroundResource, setBackgroundResource] = useState<Resource | null>(null);
     const [pack, setPack] = useState<Pack | null>(null);
+    const [onlyOnDay, setOnlyOnDay] = useState<DayType | null>(blook?.onlyOnDay || null);
 
     const { closeModal } = useModal();
 
@@ -32,6 +33,8 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
             setRarity(rarities.find((rarity) => rarity.id === blook.rarityId) || null);
             setPack(packs.find((pack) => pack.id === blook.packId) || null);
         }
+
+        console.log(DayType);
     }, [blook, resources, rarities, packs]);
 
     const submitForm = (mode: "create" | "update" | "delete") => {
@@ -46,7 +49,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null })
+                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null, onlyOnDay })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -61,7 +64,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null })
+                if (blook) onUpdate?.(blook.id, { name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null, onlyOnDay })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -134,6 +137,18 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 <PackPicker onPick={(pack) => setPack(pack)}>
                     Pack: {pack ? <>[{pack.id}] {pack.name}</> : "None"}
                 </PackPicker>
+
+                <Dropdown
+                    options={[
+                        { name: "None", value: null },
+                        ...Object.keys(DayType)
+                            .filter((key) => isNaN(Number(key)))
+                            .map((type) => ({ name: type, value: DayType[type as keyof typeof DayType] }))
+                    ]}
+                    onPick={(option) => setOnlyOnDay(option)}
+                >
+                    Only On Day: {onlyOnDay ? DayType[onlyOnDay] : "None"}
+                </Dropdown>
 
                 {error !== "" && <ErrorContainer>{error}</ErrorContainer>}
 

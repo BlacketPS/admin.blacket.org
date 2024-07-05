@@ -9,7 +9,8 @@ export default defineConfig({
             "@functions": "/src/functions",
             "@stores": "/src/stores",
             "@styles": "/src/styles"
-        }
+        },
+        preserveSymlinks: true
     },
     server: {
         proxy: {

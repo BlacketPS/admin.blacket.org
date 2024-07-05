@@ -26,7 +26,7 @@ export default function Pack({ pack, moveable, onClick }: PackProps) {
             </div>
 
             <div className={styles.packBottom}>
-                <img src="https://rewrite.blacket.org/content/token.png" draggable={false} />
+                <img src="https://cdn.blacket.org/static/content/token.png" draggable={false} />
                 {pack.price}
             </div>
         </div>

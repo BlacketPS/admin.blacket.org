@@ -1,6 +1,7 @@
 import Button from "./Button";
 import ButtonRow from "./ButtonRow";
 import ColorPicker from "./ColorPicker";
+import Dropdown from "./Dropdown";
 import ErrorContainer from "./ErrorContainer";
 import Form from "./Form";
 import Header from "./Header";
@@ -20,6 +21,7 @@ export {
     Button,
     ButtonRow,
     ColorPicker,
+    Dropdown,
     ErrorContainer,
     Form,
     Header,

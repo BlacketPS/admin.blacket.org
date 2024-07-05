@@ -62,6 +62,11 @@ export default function Resources() {
                             key={resource.id}
                             resource={resource}
                             onClick={() => createModal(<ResourceModal resource={resource} onUpdate={updateResource} onDelete={deleteResource} />)}
+                            onContextMenu={(e) => {
+                                e.preventDefault();
+
+                                createModal(<ResourceModal resource={resource} onCreate={createResource} />);
+                            }}
                         />
                     ))}
                 </div>
