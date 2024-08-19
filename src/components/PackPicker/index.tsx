@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Input } from "@components/index";
+import { ImageOrVideo, Input } from "@components/index";
 import { useResource } from "@stores/ResourceStore/index";
 import { usePack } from "@stores/PackStore/index";
 import styles from "./packPicker.module.scss";
@@ -63,7 +63,7 @@ export default function PackPicker({ onPick, children }: PackPickerProps) {
 
                                 setRaritySelectorOpen(false);
                             }}>
-                                {<img src={resourceIdToPath?.(pack.imageId)} alt={pack.name} />}
+                                {<ImageOrVideo src={resourceIdToPath?.(pack.imageId)} alt={pack.name} />}
                                 [{pack.id}] {pack.name}
                             </div>
                         )) : <div className={styles.noPacks}>No packs found.</div>}
@@ -73,7 +73,7 @@ export default function PackPicker({ onPick, children }: PackPickerProps) {
 
                             setRaritySelectorOpen(false);
                         }}>
-                            <img src="https://cdn.blacket.org/static/content/packs/Miscellaneous.png" alt="None" />
+                            <img src={import.meta.env.VITE_CDN_URL + "/content/packs/Miscellaneous.png"} alt="None" />
                             None
                         </div>
                     </div>

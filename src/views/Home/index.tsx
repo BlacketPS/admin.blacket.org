@@ -25,6 +25,9 @@ export default function Home() {
     if (!token) return (
         <div className={styles.container}>
             <div className={styles.message}>
+                <img src={import.meta.env.VITE_CDN_URL + "/content/logo.png"} className={styles.image} alt="Blacket" />
+                <h1 className={styles.title}>Welcome!</h1>
+
                 You must be authorized to access this page.
 
                 <ButtonRow>

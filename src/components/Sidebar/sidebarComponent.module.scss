@@ -2,6 +2,8 @@
     background-color: var(--background-color);
     border-right: 5px solid rgba(0, 0, 0, 0.15);
     min-width: 210px;
+    height: calc(100vh + 5px);
+    transform: translateY(-5px);
 
     @media only screen and (max-width: 650px) {
         width: 100%;
@@ -15,6 +17,7 @@
         align-items: center;
         justify-content: space-between;
         box-sizing: border-box;
+        transform: translateY(0);
     }
 }
 
@@ -58,22 +61,9 @@
         opacity: 1;
     }
 
-    &[data-selected="true"] {
+    &[data-selected="true"] .pageText {
+        font-weight: bold;
         opacity: 1;
-        background: linear-gradient(90deg, rgb(255, 255, 255), rgb(100, 100, 100), rgb(255, 255, 255));
-        -webkit-background-clip: text;
-        background-clip: text;
-        font-weight: 700;
-        -webkit-text-fill-color: transparent;
-        background-size: 200% 200%;
-        background-position: 100%;
-        animation: shine 1s linear forwards;
-
-        @keyframes shine {
-            to {
-                background-position: -50%;
-            }
-        }
     }
 }
 

@@ -8,6 +8,40 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.image {
+    width: 40px;
+    height: auto;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: lighter;
+    margin-top: 25px;
+
+    background: linear-gradient(to right, #fff, #434343, #fff, #fff, #fff);
+    background-size: 200% 200%;
+    background-position: 100%;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    animation: shineIn 1.5s cubic-bezier(0, 0, 0, 1) forwards;
+
+    @keyframes shineIn {
+        to {
+            background-position: -100%;
+        }
+    }
 }
 
 .message {
@@ -24,6 +58,7 @@
     max-width: 600px;
     padding: 20px;
     background-color: var(--background-color);
+    position: relative;
 
     @media (max-width: 600px) {
         width: 75%;

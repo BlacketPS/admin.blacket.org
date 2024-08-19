@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <div className={styles.navHeader}>
             <Link to={user ? "/dashboard" : "/"} className={styles.homeLink}>
-                <img className={styles.logo} src="https://cdn.blacket.org/static/content/logo.png" alt="Blacket Logo" />
+                <img className={styles.logo} src={import.meta.env.VITE_CDN_URL + "/content/logo.png"} alt="Blacket Logo" />
 
                 <div><span className={styles.title}>{import.meta.env.VITE_NAME}</span> <div className={styles.pipe} /> Admin</div>
             </Link>

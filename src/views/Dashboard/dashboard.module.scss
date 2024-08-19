@@ -1,0 +1,76 @@
+.fromInvalidPagePrompt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: middle;
+    margin: 20px 0;
+    width: fit-content;
+    padding: 0 20px 0 0;
+    border-radius: 1rem;
+
+    background-color: #4a4a4a;
+    
+    .fromInvalidPagePromptTag {
+        background-color: #bf3333;
+        border-radius: 50%;
+        color: #fff;
+        text-align: center;
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        line-height: 2rem;
+        margin-right: 10px;
+        display: inline-block;
+        transform: scale(0);
+        animation: scaleIn .5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards .1s;
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    }
+
+    .fromInvalidPagePromptText {
+        display: inline-block;
+        font-size: 1.2rem;
+        animation: widthIn 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        overflow: hidden;
+        white-space: nowrap;
+
+        @keyframes widthIn {
+            from {
+                max-width: 0;
+            }
+            to {
+                max-width: 399.08px;
+            }
+        }
+
+        & > .inlineDivider {
+            vertical-align: middle;
+            display: inline-flex;
+            height: 0.1rem;
+            min-width: 10px;
+            background-color: #fff;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        & > a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Nunito, sans-serif;
+            transition: color 0.3s;
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            &:hover {
+                color: #a2a2a2;
+            }
+        }
+    }
+}

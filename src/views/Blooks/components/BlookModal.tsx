@@ -1,12 +1,12 @@
+import { Button, Dropdown, ErrorContainer, Form, ImageOrVideo, Input, Modal, PackPicker, RarityPicker, ResourcePicker } from "@components/index";
+import { DayType, Pack, Rarity, Resource } from "blacket-types";
 import { useEffect, useState } from "react";
-import { Modal, Form, Input, RarityPicker, ResourcePicker, PackPicker, Dropdown, ErrorContainer, Button } from "@components/index";
-import { useModal } from "@stores/ModalStore/index";
-import { useResource } from "@stores/ResourceStore/index";
-import { useRarity } from "@stores/RarityStore/index";
-import { usePack } from "@stores/PackStore/index";
 
 import { BlookModalProps } from "../blooks.d";
-import { Rarity, Resource, Pack, DayType } from "blacket-types";
+import { useModal } from "@stores/ModalStore/index";
+import { usePack } from "@stores/PackStore/index";
+import { useRarity } from "@stores/RarityStore/index";
+import { useResource } from "@stores/ResourceStore/index";
 
 export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: BlookModalProps) {
     const { resources } = useResource();
@@ -122,16 +122,16 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
 
                 <ResourcePicker
                     onPick={(resource) => setImageResource(resource)}
-                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp"]}
+                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp", "mp4", "webm"]}
                 >
-                    Image Resource: {imageResource ? <>[{imageResource.id}] <img src={imageResource.path} /></> : "None"}
+                    Image Resource: {imageResource ? <>[{imageResource.id}] <ImageOrVideo src={imageResource.path} /></> : "None"}
                 </ResourcePicker>
 
                 <ResourcePicker
                     onPick={(resource) => setBackgroundResource(resource)}
-                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp"]}
+                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp", "mp4", "webm"]}
                 >
-                    Background Resource: {backgroundResource ? <>[{backgroundResource.id}] <img src={backgroundResource.path} /></> : "None"}
+                    Background Resource: {backgroundResource ? <>[{backgroundResource.id}] <ImageOrVideo src={backgroundResource.path} /></> : "None"}
                 </ResourcePicker>
 
                 <PackPicker onPick={(pack) => setPack(pack)}>

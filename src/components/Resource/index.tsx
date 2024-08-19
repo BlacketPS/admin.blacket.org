@@ -1,10 +1,5 @@
-import styles from "./resource.module.scss";
-
 import { ResourceProps } from "./resource.d";
-
-function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import styles from "./resource.module.scss";
 
 export default function Resource({ resource, fit = false, hideGroup = false, ...props }: ResourceProps) {
     const renderResource = () => {
@@ -21,10 +16,7 @@ export default function Resource({ resource, fit = false, hideGroup = false, ...
                 return <img src={resource.path} />;
             case "mp4":
             case "webm":
-            case "avi":
-            case "mov":
-            case "wmv":
-                return <i className="fas fa-file-video" />;
+                return <video src={resource.path} autoPlay muted loop controls={false} />;
             case "mp3":
             case "wav":
             case "ogg":
@@ -47,7 +39,7 @@ export default function Resource({ resource, fit = false, hideGroup = false, ...
             ...props.style
         }} {...props}>
             {renderResource()}
-            <div>[{resource.id}] {hideGroup ? "" : (<><span style={{fontWeight:900}}>{resource.path.split("/")[2]}</span> / </>)}<span style={{fontWeight: 700}}>{resource.path?.split("/")?.pop()?.split(".")[0]}</span>.{resource.path?.split("/")?.pop()?.split(".").pop()}</div>
+            <div>[{resource.id}] <b>{resource.path}</b></div>
         </div>
     );
 }

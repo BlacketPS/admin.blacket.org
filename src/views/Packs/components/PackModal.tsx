@@ -1,10 +1,10 @@
+import { Button, ColorPicker, ErrorContainer, Form, ImageOrVideo, Input, Modal, ResourcePicker, Toggle } from "@components/index";
 import { useEffect, useState } from "react";
-import { Modal, Form, Input, ColorPicker, ResourcePicker, Toggle, ErrorContainer, Button } from "@components/index";
-import { useModal } from "@stores/ModalStore/index";
-import { useResource } from "@stores/ResourceStore/index";
 
 import { PackModalProps } from "../packs.d";
 import { Resource } from "blacket-types";
+import { useModal } from "@stores/ModalStore/index";
+import { useResource } from "@stores/ResourceStore/index";
 
 export default function CreatePackModal({ pack, onCreate, onUpdate, onDelete }: PackModalProps) {
     const { resources } = useResource();
@@ -94,11 +94,11 @@ export default function CreatePackModal({ pack, onCreate, onUpdate, onDelete }: 
 
                 <ResourcePicker
                     onPick={(resource) => setSelectedResource(resource)}
-                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp"]}
+                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp", "mp4", "webm"]}
                 >
-                    Pack Image: {selectedResource ? <>[{selectedResource.id}] <img src={selectedResource.path} /></> : "None"}
+                    Pack Image: {selectedResource ? <>[{selectedResource.id}] <ImageOrVideo src={selectedResource.path} /></> : "None"}
                 </ResourcePicker>
-
+                
                 <Toggle onClick={() => setEnabled(!enabled)} checked={enabled}>
                     Enabled
                 </Toggle>

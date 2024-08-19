@@ -1,11 +1,11 @@
+import { Button, Dropdown, ErrorContainer, Form, ImageOrVideo, Input, Modal, RarityPicker, ResourcePicker, Toggle } from "@components/index";
+import { ItemType, Rarity, Resource } from "blacket-types";
 import { useEffect, useState } from "react";
-import { Modal, Form, Input, RarityPicker, ResourcePicker, Dropdown, Toggle, ErrorContainer, Button } from "@components/index";
-import { useRarity } from "@stores/RarityStore/index";
-import { useResource } from "@stores/ResourceStore/index";
-import { useModal } from "@stores/ModalStore/index";
 
 import { ItemModalProps } from "../items.d";
-import { Rarity, Resource, ItemType } from "blacket-types";
+import { useModal } from "@stores/ModalStore/index";
+import { useRarity } from "@stores/RarityStore/index";
+import { useResource } from "@stores/ResourceStore/index";
 
 export default function ItemModal({ item, onCreate, onUpdate, onDelete }: ItemModalProps) {
     const { rarities } = useRarity();
@@ -81,7 +81,7 @@ export default function ItemModal({ item, onCreate, onUpdate, onDelete }: ItemMo
                     onChange={(e) => setName(e.target.value)}
                 />
 
-                <Input icon="fas fa-tag"
+                <Input icon="fas fa-pencil"
                     placeholder="Description"
                     value={description}
                     onClick={() => setError("")}
@@ -94,9 +94,9 @@ export default function ItemModal({ item, onCreate, onUpdate, onDelete }: ItemMo
 
                 <ResourcePicker
                     onPick={(resource) => setImageResource(resource)}
-                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp"]}
+                    allowedTypes={["png", "jpg", "jpeg", "gif", "webp", "mp4", "webm"]}
                 >
-                    Image Resource: {imageResource ? <>[{imageResource.id}] <img src={imageResource.path} /></> : "None"}
+                    Image Resource: {imageResource ? <>[{imageResource.id}] <ImageOrVideo src={imageResource.path} /></> : "None"}
                 </ResourcePicker>
 
                 <Dropdown

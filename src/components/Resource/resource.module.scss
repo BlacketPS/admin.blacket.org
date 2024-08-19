@@ -23,6 +23,13 @@
         object-fit: contain;
     }
 
+    &>video {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        object-fit: contain;
+    }
+
     &>i {
         font-size: 18px;
         margin-right: 10px;
@@ -35,5 +42,6 @@
 
     @media (max-width: 650px) {
         width: 100%;
+        flex-direction: column;
     }
 }

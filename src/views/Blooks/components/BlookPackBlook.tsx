@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { ImageOrVideo } from "@components/index";
 import { useResourceIdToPath } from "@functions/index";
 import styles from "../blooks.module.scss";
 
@@ -14,10 +15,10 @@ export default function BlookPackBlook({ blook, moveable, ...props }: BlookPackB
     return (
         <li className={styles.blookPackBlookHolder} style={{
             transform: CSS.Transform.toString(transform),
-            transition: transition ?? undefined
+            transition
         }} ref={setNodeRef} data-moveable={moveable} {...attributes} {...listeners} {...props}>
             <p>{blook.id}</p>
-            <img src={useResourceIdToPath(blook.imageId)} draggable={false} />
+            <ImageOrVideo src={useResourceIdToPath(blook.imageId)} draggable={false} />
         </li>
     );
 }

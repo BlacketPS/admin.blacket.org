@@ -47,11 +47,18 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 0px 20px 10px;
+    margin-bottom: 25px;
     font-size: 30px;
     font-weight: 700;
+    width: 100%;
 
     &>img {
+        object-fit: contain;
+        width: 200px;
+        height: 200px;
+    }
+
+    &>video {
         object-fit: contain;
         width: 200px;
         height: 200px;
@@ -64,5 +71,37 @@
         align-items: center;
         justify-content: center;
         font-size: 150px;
+    }
+
+    & .addResourceModalArrowButton {
+        font-size: 30px;
+        cursor: pointer;
+        transition: .2s;
+        user-select: none;
+        pointer-events: all;
+        display: block;
+        margin-left: auto;
+        margin-right: 50px;
+        width: 3rem;
+        box-sizing: border-box;
+
+        &:hover {
+            color: #aaaaaa !important;
+        }
+
+        &:focus, &:active {
+            color: #9a9a9a !important;
+        }
+    }
+}
+
+@keyframes addResourceModalFontSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
     }
 }

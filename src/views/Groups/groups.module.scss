@@ -1,4 +1,4 @@
-.itemsWrapper {
+.groupsWrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -14,7 +14,7 @@
     }
 }
 
-.itemContainer {
+.groupContainer {
     width: 150px;
     height: 150px;
     display: flex;
@@ -49,4 +49,28 @@
         height: 85px;
         object-fit: contain;
     }
+}
+
+.permissionsArrayContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    max-height: 200px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    margin-bottom: 10px;
+}
+
+.permissionsArray {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 10px;
+    height: 100%;
+    width: 400px;
+    padding: 5px;
+    overflow-y: auto;
 }

@@ -46,6 +46,13 @@
         padding-bottom: 5px;
         user-select: none;
     }
+
+    &>video {
+        width: 65%;
+        object-fit: contain;
+        padding-bottom: 5px;
+        user-select: none;
+    }
 }
 
 .packBottom {
