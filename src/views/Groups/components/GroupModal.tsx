@@ -1,5 +1,5 @@
-import { Button, Dropdown, ErrorContainer, Form, ImageOrVideo, Input, Modal, ResourcePicker, Toggle } from "@components/index";
-import { PermissionType, Resource } from "blacket-types";
+import { Button, ErrorContainer, Form, ImageOrVideo, Input, Modal, ResourcePicker, Toggle } from "@components/index";
+import { PermissionType, PermissionTypeEnum, Resource } from "blacket-types";
 import { useEffect, useState } from "react";
 
 import { GroupModalProps } from "../groups.d";
@@ -83,10 +83,10 @@ export default function GroupModal({ group, onCreate, onUpdate, onDelete }: Grou
 
                 <div className={styles.permissionsArrayContainer}>
                     <div className={styles.permissionsArray}>
-                        {Object.keys(PermissionType)
+                        {Object.keys(PermissionTypeEnum)
                             .filter((key) => isNaN(Number(key)))
                             .map((type) => {
-                                const permission = PermissionType[type as keyof typeof PermissionType];
+                                const permission = PermissionTypeEnum[type as keyof typeof PermissionTypeEnum];
 
                                 return <Toggle
                                     key={permission}

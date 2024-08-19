@@ -108,7 +108,7 @@ export default function Blooks() {
                         </Button>
                     </ButtonRow>
 
-                    {packs.map((pack) => <BlookPackCategory pack={pack}>
+                    {packs.map((pack) => <BlookPackCategory key={pack.id} pack={pack}>
                         <SortableContext items={!editMode ? blooks.filter((blook) => blook.packId === pack.id).map((blook) => blook.id) : []}>
                             {blooks.filter((blook) => blook.packId === pack.id).map((blook) => <BlookPackBlook
                                 key={blook.id}

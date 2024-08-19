@@ -1,5 +1,5 @@
 import { Button, Dropdown, ErrorContainer, Form, ImageOrVideo, Input, Modal, PackPicker, RarityPicker, ResourcePicker } from "@components/index";
-import { DayType, Pack, Rarity, Resource } from "blacket-types";
+import { DayType, DayTypeEnum, Pack, Rarity, Resource } from "blacket-types";
 import { useEffect, useState } from "react";
 
 import { BlookModalProps } from "../blooks.d";
@@ -22,7 +22,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
     const [imageResource, setImageResource] = useState<Resource | null>(null);
     const [backgroundResource, setBackgroundResource] = useState<Resource | null>(null);
     const [pack, setPack] = useState<Pack | null>(null);
-    const [onlyOnDay, setOnlyOnDay] = useState<DayType | null>(blook?.onlyOnDay || null);
+    const [onlyOnDay, setOnlyOnDay] = useState<DayType | null>(blook?.onlyOnDay ?? null);
 
     const { closeModal } = useModal();
 
@@ -34,7 +34,6 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
             setPack(packs.find((pack) => pack.id === blook.packId) || null);
         }
 
-        console.log(DayType);
     }, [blook, resources, rarities, packs]);
 
     const submitForm = (mode: "create" | "update" | "delete") => {
@@ -49,7 +48,7 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 if (!backgroundResource) return setError("Please select a background resource.");
 
                 setLoading(true);
-                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id ? pack.id : null, onlyOnDay })
+                onCreate?.({ name, chance: parseFloat(chance), price: parseFloat(price), rarityId: rarity.id, imageId: imageResource.id, backgroundId: backgroundResource.id, packId: pack?.id, onlyOnDay: onlyOnDay ?? undefined })
                     .then(() => closeModal())
                     .catch((err: Fetch2Response) => setError(err.data.message))
                     .finally(() => setLoading(false));
@@ -141,13 +140,13 @@ export default function BlookModal({ blook, onCreate, onUpdate, onDelete }: Bloo
                 <Dropdown
                     options={[
                         { name: "None", value: null },
-                        ...Object.keys(DayType)
+                        ...Object.keys(DayTypeEnum)
                             .filter((key) => isNaN(Number(key)))
-                            .map((type) => ({ name: type, value: DayType[type as keyof typeof DayType] }))
+                            .map((type) => ({ name: type, value: DayTypeEnum[type as keyof typeof DayTypeEnum] }))
                     ]}
                     onPick={(option) => setOnlyOnDay(option)}
                 >
-                    Only On Day: {onlyOnDay ? DayType[onlyOnDay] : "None"}
+                    Only On Day: {onlyOnDay ? DayTypeEnum[onlyOnDay] : "None"}
                 </Dropdown>
 
                 {error !== "" && <ErrorContainer>{error}</ErrorContainer>}

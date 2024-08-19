@@ -3,14 +3,14 @@ import { Modal, Form, Input, ColorPicker, Dropdown, ErrorContainer, Button } fro
 import { useModal } from "@stores/ModalStore/index";
 
 import { RarityModalProps } from "../rarities.d";
-import { RarityAnimationType } from "blacket-types";
+import { RarityAnimationType, RarityAnimationTypeEnum } from "blacket-types";
 
 export default function RarityModal({ rarity, onCreate, onUpdate, onDelete }: RarityModalProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [name, setName] = useState<string>(rarity?.name || "");
     const [color, setColor] = useState<string>(rarity?.color || "#ffffff");
-    const [animationType, setAnimationType] = useState<RarityAnimationType>(rarity?.animationType || 1);
+    const [animationType, setAnimationType] = useState<RarityAnimationType>(rarity?.animationType || RarityAnimationTypeEnum.UNCOMMON);
     const [experience, setExperience] = useState<string>(rarity?.experience.toString() || "");
 
     const { closeModal } = useModal();
@@ -76,12 +76,12 @@ export default function RarityModal({ rarity, onCreate, onUpdate, onDelete }: Ra
                 />
 
                 <Dropdown
-                    options={Object.keys(RarityAnimationType)
+                    options={Object.keys(RarityAnimationTypeEnum)
                         .filter((key) => isNaN(Number(key)))
-                        .map((type) => ({ name: type, value: RarityAnimationType[type as keyof typeof RarityAnimationType] }))}
+                        .map((type) => ({ name: type, value: RarityAnimationTypeEnum[type as keyof typeof RarityAnimationTypeEnum] }))}
                     onPick={(value) => setAnimationType(value)}
                 >
-                    Animation Type: {RarityAnimationType[animationType]}
+                    Animation Type: {RarityAnimationTypeEnum[animationType]}
                 </Dropdown>
 
                 {error !== "" && <ErrorContainer>{error}</ErrorContainer>}

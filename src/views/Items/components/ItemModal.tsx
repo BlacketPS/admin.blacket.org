@@ -1,5 +1,5 @@
 import { Button, Dropdown, ErrorContainer, Form, ImageOrVideo, Input, Modal, RarityPicker, ResourcePicker, Toggle } from "@components/index";
-import { ItemType, Rarity, Resource } from "blacket-types";
+import { ItemType, ItemTypeEnum, Rarity, Resource } from "blacket-types";
 import { useEffect, useState } from "react";
 
 import { ItemModalProps } from "../items.d";
@@ -17,7 +17,7 @@ export default function ItemModal({ item, onCreate, onUpdate, onDelete }: ItemMo
     const [description, setDescription] = useState<string>(item?.description || "");
     const [rarity, setRarity] = useState<Rarity | null>(null);
     const [imageResource, setImageResource] = useState<Resource | null>(null);
-    const [type, setType] = useState<ItemType>(item?.type || ItemType.NONE);
+    const [type, setType] = useState<ItemType>(item?.type || ItemTypeEnum.NONE);
     const [boosterDuration, setBoosterDuration] = useState<string | null>(item?.boosterDuration ? item.boosterDuration.toString() : null);
     const [canUse, setCanUse] = useState<boolean>(item?.canUse || false);
     const [canAuction, setCanAuction] = useState<boolean>(item?.canAuction || true);
@@ -100,15 +100,15 @@ export default function ItemModal({ item, onCreate, onUpdate, onDelete }: ItemMo
                 </ResourcePicker>
 
                 <Dropdown
-                    options={Object.keys(ItemType)
+                    options={Object.keys(ItemTypeEnum)
                         .filter((key) => isNaN(Number(key)))
-                        .map((type) => ({ name: type, value: ItemType[type as keyof typeof ItemType] }))}
+                        .map((type) => ({ name: type, value: ItemTypeEnum[type as keyof typeof ItemTypeEnum] }))}
                     onPick={(option) => setType(option)}
                 >
-                    Item Type: {ItemType[type]}
+                    Item Type: {ItemTypeEnum[type]}
                 </Dropdown>
 
-                {type === ItemType.BOOSTER && <Input icon="fas fa-clock"
+                {type === ItemTypeEnum.BOOSTER && <Input icon="fas fa-clock"
                     placeholder="Booster Duration (in minutes)"
                     value={boosterDuration?.toString() || ""}
                     onClick={() => setError("")}
